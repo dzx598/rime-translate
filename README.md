@@ -118,3 +118,7 @@ lua tests/test_lua.lua rime/lua http://127.0.0.1:8766   # 需要先起一个假�
 ```bash
 ./uninstall.sh   # 移除服务和 Lua 插件，保留雾凇拼音、配置和缓存
 ```
+
+## 许可证
+
+[MIT](LICENSE)
