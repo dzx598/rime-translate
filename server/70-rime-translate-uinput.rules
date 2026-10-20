@@ -1,0 +1,4 @@
+# 让当前登录（坐在电脑前）的用户可以写 /dev/uinput，
+# rime-translate 用它创建一个只有 F18 一个键的虚拟键盘，在自动翻译完成后刷新输入法候选。
+# 文件名需要排在 73-seat-late.rules 之前，uaccess 标签才会生效。
+KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput"

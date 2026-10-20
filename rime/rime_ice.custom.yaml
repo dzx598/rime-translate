@@ -1,0 +1,17 @@
+# 雾凇拼音（rime_ice 全拼）补丁：接入 cn2en 自动翻译
+# 双拼用户：把同样的 patch 写进对应的 double_pinyin*.custom.yaml
+# 修改后需要「重新部署」才生效。
+patch:
+  # processor 放最前面，保证刷新键先被我们拿到
+  "engine/processors/@before 0": lua_processor@*cn2en_processor
+  # filter 放最后（在 uniquifier 之后）
+  "engine/filters/@next": lua_filter@*cn2en_filter
+
+  cn2en:
+    server: "http://127.0.0.1:8765" # 本地 rime-translate 服务
+    position: 2                     # 译文候选的位置，2 = 第二个（空格仍上屏中文）
+    comment: "〔译〕"
+    max_time: 0.5                   # 询问本地服务的最长等待秒数（未命中时服务立即返回）
+    refresh_keycode: 0x1008FF49     # 服务按下的刷新键（F18 -> XF86Launch9），需与服务端 refresh_key 对应
+    # to: "ja"                      # 目标语言，留空则使用服务端配置
+    # 停止输入多久后翻译：改 ~/.config/rime-translate/config.json 里的 auto_delay_ms

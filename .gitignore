@@ -1,0 +1,4 @@
+.claude/
+/rime-translate
+server/rime-translate
+*.bak.*

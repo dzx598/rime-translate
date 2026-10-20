@@ -1,0 +1,30 @@
+{
+  "_comment": "复制到 ~/.config/rime-translate/config.json。backends 按顺序回退；proxy 留空则读取 HTTPS_PROXY 环境变量（systemd 服务里通常没有，所以要用 google 建议填 Clash 端口）",
+  "listen": "127.0.0.1:8765",
+  "from": "zh",
+  "to": "en",
+  "backends": ["google"],
+  "timeout_ms": 8000,
+  "proxy": "",
+  "cache_file": "~/.cache/rime-translate/cache.json",
+  "cache_max": 20000,
+  "max_runes": 500,
+  "auto_delay_ms": 2000,
+  "refresh_key": 188,
+  "_comment_auto": "auto_delay_ms：停止输入多久后自动翻译。refresh_key：翻译好后虚拟键盘按的 Linux 键码（188 = F18），需要 /dev/uinput 写权限，0 = 不按（译文要等下一次按键才出现）",
+
+  "openai": {
+    "_comment": "任意 OpenAI 兼容接口：OpenAI / DeepSeek(https://api.deepseek.com/v1, deepseek-chat) / 通义 / 本地 Ollama(http://127.0.0.1:11434/v1)。api_key 也可用环境变量 RIME_TRANSLATE_OPENAI_KEY",
+    "base_url": "https://api.openai.com/v1",
+    "api_key": "",
+    "model": "gpt-4o-mini",
+    "temperature": 0,
+    "prompt": ""
+  },
+
+  "baidu": {
+    "_comment": "百度翻译开放平台 https://fanyi-api.baidu.com ，标准版每月有免费额度",
+    "appid": "",
+    "secret": ""
+  }
+}

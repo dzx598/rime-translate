@@ -1,0 +1,13 @@
+[Unit]
+Description=rime-translate local translation service for Rime (cn2en)
+After=network-online.target
+
+[Service]
+ExecStart=%h/.local/bin/rime-translate -config %h/.config/rime-translate/config.json
+Restart=on-failure
+RestartSec=3
+# 只连本机代理/外网，不需要额外权限
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
