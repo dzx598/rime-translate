@@ -1,5 +1,7 @@
 # rime-translate：雾凇拼音实时中译英
 
+**中文** | [English](README.en.md)
+
 在 **fcitx5-rime + 雾凇拼音** 里打拼音，停手 2 秒，第二个候选自动变成英文译文。适用于所有程序，X11 和 Wayland 都能用。
 
 ```
@@ -35,7 +37,7 @@ fcitx5 ─ Rime(雾凇拼音)
 ```
 
 脚本会做这些事：
-1. `apt install fcitx5-rime librime-plugin-lua curl git`（pacman/dnf 也能识别）
+1. `apt install fcitx5-rime librime-plugin-lua curl git golang-go`（pacman/dnf 也能识别）
 2. 如果 `~/.local/share/fcitx5/rime` 里还没有雾凇拼音，先备份原目录，再 `git clone` rime-ice
 3. 复制两个 Lua 文件，写入 `rime_ice.custom.yaml`（已有同名文件就不覆盖，改为生成 `.cn2en` 供手动合并）
 4. 用 sudo 安装 udev 规则 `70-rime-translate-uinput.rules`，让当前登录用户可以写 `/dev/uinput`
@@ -69,7 +71,7 @@ fcitx5 ─ Rime(雾凇拼音)
 ```
 也可以不写 `api_key`，改用环境变量：`systemctl --user edit rime-translate` → `Environment=RIME_TRANSLATE_OPENAI_KEY=sk-...`。
 本地 Ollama：`base_url: http://127.0.0.1:11434/v1`，`model: qwen2.5:7b`，`api_key` 随便填一个非空值。
-用大模型时建议在 `cn2en` 里把 `max_time` 调到 3。
+大模型较慢时可以把 `timeout_ms` 调大，等待在服务端进行，不会卡输入法。
 
 **百度（国内直连，免费额度）**
 ```json
